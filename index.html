@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Vish Project — spare parts inventory intelligence for modern factories." />
+  <title>Vish Project — Inventory Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260711-16" />
+</head>
+<body class="dark-mode">
+  <aside class="sidebar">
+    <a class="brand" href="#" aria-label="Vish Project home"><span class="brand-mark"><i></i><i></i><i></i></span><span>VISH PROJECT</span></a>
+    <div class="plant-select"><span class="plant-icon">V</span><div><small>ACTIVE SITE</small><strong>Vish Plant</strong></div><span class="chevron">⌄</span></div>
+    <nav>
+      <p>WORKSPACE</p>
+      <a href="#" class="nav-link active" data-page="dashboard"><span>⌂</span> Overview</a>
+      <a href="#" class="nav-link" data-page="inventory"><span>▦</span> Parts inventory <b>3</b></a>
+      <a href="#" class="nav-link" data-page="orders"><span>▤</span> Purchase orders</a>
+      <a href="#" class="nav-link" data-page="suppliers"><span>◇</span> Suppliers</a>
+      <p>INTELLIGENCE</p>
+
+      <a href="#" class="nav-link" data-page="activity"><span>↻</span> Activity log</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="profile"><div class="avatar">V</div><div><strong>Vish</strong><small>Warehouse Manager</small></div><button>•••</button></div>
+    </div>
+  </aside>
+
+  <main>
+    <header class="topbar">
+      <button class="mobile-menu" aria-label="Open menu">☰</button>
+      <div class="search"><span>⌕</span><input id="globalSearch" type="search" placeholder="Search parts, suppliers, or POs..."/><kbd>⌘ K</kbd></div>
+      <div class="header-actions"><button class="theme-toggle" id="themeToggle" aria-label="Enable dark mode" title="Toggle dark mode">☾</button><button class="icon-btn" aria-label="Notifications">♢<i></i></button><button class="primary" id="newOrderBtn"><span>＋</span> New purchase order</button></div>
+    </header>
+
+    <div class="content">
+      <section class="page active" id="dashboard">
+        <div class="page-heading"><div><p class="eyebrow">SATURDAY, JULY 11</p><h1>Good morning, Vish.</h1><p>Here’s what’s happening across your inventory today.</p></div><button class="secondary" id="exportBtn">⇧ Export report</button></div>
+
+        <div class="metrics">
+          <article class="metric"><div class="metric-top"><span class="metric-icon orange">▦</span><span class="trend up">↗ 4.2%</span></div><p>Total inventory value</p><h2>$1,428,650</h2><small>Across 1,284 unique parts</small></article>
+          <article class="metric"><div class="metric-top"><span class="metric-icon red">!</span><span class="metric-link" data-goto="inventory">Review →</span></div><p>Low stock parts</p><h2>24</h2><small><b>8 critical</b> · 16 below minimum</small></article>
+          <article class="metric"><div class="metric-top"><span class="metric-icon blue">▤</span><span class="trend down">↓ 2 this week</span></div><p>Open purchase orders</p><h2>7</h2><small>$84,240 total committed</small></article>
+          <article class="metric"><div class="metric-top"><span class="metric-icon green">◇</span><span class="trend up">98.4%</span></div><p>Active suppliers</p><h2>18</h2><small>92% on-time delivery rate</small></article>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="card stock-card">
+            <div class="card-head"><div><h3>Stock requiring attention</h3><p>Parts at or below their reorder point</p></div><button class="text-btn" data-goto="inventory">View all 24 →</button></div>
+            <div class="table-wrap"><table><thead><tr><th>PART</th><th>LOCATION</th><th>STOCK LEVEL</th><th>STATUS</th><th></th></tr></thead><tbody id="attentionTable"></tbody></table></div>
+          </article>
+          <article class="card chart-card">
+            <div class="card-head"><div><h3>Inventory movement</h3><p>Issues vs. receipts</p></div><select><option>Last 6 months</option><option>Last year</option></select></div>
+            <div class="chart-legend"><span><i class="receipt-dot"></i> Received</span><span><i class="issue-dot"></i> Issued</span></div>
+            <div class="chart" id="movementChart"></div>
+            <div class="chart-summary"><div><small>TOTAL RECEIVED</small><strong>4,820 <em>units</em></strong></div><div><small>TOTAL ISSUED</small><strong>3,940 <em>units</em></strong></div></div>
+          </article>
+        </div>
+
+        <div class="bottom-grid">
+          <article class="card activity-card"><div class="card-head"><div><h3>Recent activity</h3><p>Latest inventory transactions</p></div><button class="text-btn" data-goto="activity">View activity log →</button></div><div id="recentActivity"></div></article>
+          <article class="card schedule-card"><div class="card-head"><div><h3>Upcoming maintenance</h3><p>Parts readiness for scheduled work</p></div><span class="month">JUL 2026</span></div><div id="maintenanceList"></div></article>
+        </div>
+      </section>
+
+      <section class="page" id="inventory"><div class="page-heading"><div><p class="eyebrow">WAREHOUSE OPERATIONS</p><h1>Parts inventory</h1><p>1,284 parts across 12 categories and 4 storage zones.</p></div><button class="primary" id="addPartBtn">＋ Add part</button></div><div class="toolbar"><div class="inner-search">⌕ <input id="partSearch" placeholder="Search by part name, part number, or supplier"></div><select id="statusFilter"><option value="all">All stock statuses</option><option value="critical">Critical</option><option value="low">Low stock</option><option value="healthy">Healthy</option></select></div><article class="card"><div class="table-wrap"><table class="full-table"><thead><tr><th>PART</th><th>PART NUMBER</th><th>SUPPLIER</th><th>LOCATION</th><th>AVAILABLE</th><th>MINIMUM</th><th>UNIT PRICE</th><th>STATUS</th><th></th></tr></thead><tbody id="partsTable"></tbody></table></div></article></section>
+      <section class="page" id="orders"><div class="page-heading"><div><p class="eyebrow">PROCUREMENT</p><h1>Purchase orders</h1><p>Track and manage replenishment across all suppliers.</p></div><button class="primary new-order">＋ New purchase order</button></div><div class="metrics compact"><article class="metric"><p>Pending approval</p><h2>3</h2><small>$24,820 committed</small></article><article class="metric"><p>In transit</p><h2>4</h2><small>Expected within 14 days</small></article><article class="metric"><p>Received this month</p><h2>12</h2><small>$136,440 total value</small></article></div><article class="card"><div class="table-wrap"><table class="full-table"><thead><tr><th>ORDER</th><th>SUPPLIER</th><th>CREATED</th><th>EXPECTED</th><th>ITEMS</th><th>TOTAL</th><th>STATUS</th></tr></thead><tbody id="ordersTable"></tbody></table></div></article></section>
+      <section class="page" id="suppliers"><div class="page-heading"><div><p class="eyebrow">SUPPLY NETWORK</p><h1>Suppliers</h1><p>Performance and purchasing relationships at a glance.</p></div><button class="primary">＋ Add supplier</button></div><div class="supplier-grid" id="supplierGrid"></div></section>
+      <section class="page" id="reports"><div class="page-heading"><div><p class="eyebrow">INTELLIGENCE</p><h1>Reports & analytics</h1><p>Turn warehouse activity into actionable decisions.</p></div><button class="secondary">⇧ Export data</button></div><div class="report-grid"><article class="card big-stat"><p>ANNUAL INVENTORY TURNOVER</p><h2>4.8×</h2><span class="trend up">↗ 0.6 vs last year</span></article><article class="card big-stat"><p>STOCKOUT RISK</p><h2>1.9%</h2><span class="trend down">↓ 0.8% vs last month</span></article><article class="card category-card"><div class="card-head"><div><h3>Value by category</h3><p>Current inventory allocation</p></div></div><div id="categoryBars"></div></article><article class="card category-card"><div class="card-head"><div><h3>Most used parts</h3><p>Units issued in the last 90 days</p></div></div><div id="usageBars"></div></article></div></section>
+      <section class="page" id="activity"><div class="page-heading"><div><p class="eyebrow">AUDIT TRAIL</p><h1>Inventory activity</h1><p>A complete transaction history for every part movement.</p></div><button class="secondary">⇧ Export log</button></div><article class="card"><div class="activity-feed" id="activityFeed"></div></article></section>
+    </div>
+  </main>
+
+  <div class="modal-backdrop" id="modal"><div class="modal"><button class="modal-close" aria-label="Close">×</button><p class="eyebrow">CREATE ORDER</p><h2>New purchase order</h2><p>Start a replenishment request for a spare part.</p><form id="orderForm"><label>Part<select id="orderPart"></select></label><div class="form-row"><label>Supplier<input id="orderSupplier" readonly></label><label>Quantity<input type="number" min="1" value="25" required></label></div><label>Required by<input type="date" value="2026-07-25" required></label><div class="modal-actions"><button type="button" class="secondary cancel-modal">Cancel</button><button class="primary" type="submit">Create purchase order</button></div></form></div></div>
+  <div class="toast" id="toast"><span>✓</span><div><strong>Purchase order created</strong><small>The procurement team has been notified.</small></div></div>
+  <script src="script.js?v=20260711-6"></script>
+  <script src="categories.js?v=20260711-10"></script>
+  <script src="orders.js?v=20260711-9"></script>
+  <script src="theme.js?v=20260711-14"></script>
+</body>
+</html>

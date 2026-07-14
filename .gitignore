@@ -2,3 +2,5 @@
 debug.png
 node_modules/
 .next/
+out/
+dist/

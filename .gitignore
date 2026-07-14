@@ -1,2 +1,4 @@
 .chrome-test/
 debug.png
+node_modules/
+.next/

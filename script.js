@@ -6,18 +6,24 @@ const parts=[
  {name:'ABB Contactor 24V',sku:'ABB-AF26-30',supplier:'ABB',location:'Rack E · Shelf 4',stock:28,min:10,price:96.20,icon:'▣'},
  {name:'Festo Pneumatic Cylinder',sku:'FES-DSBC-40',supplier:'Festo',location:'Rack B · Shelf 8',stock:17,min:6,price:142.00,icon:'⇥'},
  {name:'Grundfos Circulation Pump',sku:'GRU-UPS25-60',supplier:'Grundfos',location:'Floor Zone 2',stock:6,min:4,price:318.50,icon:'◒'},
- {name:'Allen-Bradley PLC Module',sku:'AB-1769-IQ16',supplier:'Rockwell',location:'Secure Cage · 04',stock:9,min:3,price:684.00,icon:'▦'}
+ {name:'Allen-Bradley PLC Module',sku:'AB-1769-IQ16',supplier:'Rockwell',location:'Secure Cage · 04',stock:9,min:3,price:684.00,icon:'▦'},
+ {name:'Schneider Circuit Breaker',sku:'SCH-GV2ME14',supplier:'Schneider Electric',location:'Rack E - Bin 09',stock:22,min:8,price:74.90,icon:'CB'},
+ {name:'Timken Tapered Roller Bearing',sku:'TIM-30206',supplier:'Timken',location:'Rack A - Bin 18',stock:7,min:10,price:46.25,icon:'TB'},
+ {name:'SMC Air Filter Regulator',sku:'SMC-AW30-03',supplier:'SMC',location:'Rack B - Shelf 6',stock:14,min:5,price:128.60,icon:'AF'},
+ {name:'Industrial Cleaning Wipes',sku:'GEN-WIPE-500',supplier:'Grainger',location:'General Store - G12',stock:85,min:25,price:19.80,icon:'GW'}
 ];
 const orders=[
- ['PO-2048','SKF','Jul 08, 2026','Jul 16, 2026','4','\u0024 12,840','transit','In transit'],['PO-2047','Parker Hannifin','Jul 07, 2026','Jul 19, 2026','2','\u0024 8,260','pending','Pending approval'],['PO-2046','Siemens','Jul 03, 2026','Jul 14, 2026','7','\u0024 31,440','transit','In transit'],['PO-2045','Gates Industrial','Jul 01, 2026','Jul 12, 2026','3','\u0024 4,180','pending','Pending approval']
+ ['PO-2050','Schneider Electric','Jul 14, 2026','Jul 22, 2026','3','\u0024 6,740','pending','Pending approval'],['PO-2049','Timken','Jul 12, 2026','Jul 20, 2026','2','\u0024 3,860','transit','In transit'],['PO-2048','SKF','Jul 08, 2026','Jul 16, 2026','4','\u0024 12,840','transit','In transit'],['PO-2047','Parker Hannifin','Jul 07, 2026','Jul 19, 2026','2','\u0024 8,260','pending','Pending approval'],['PO-2046','Siemens','Jul 03, 2026','Jul 14, 2026','7','\u0024 31,440','transit','In transit'],['PO-2045','Gates Industrial','Jul 01, 2026','Jul 12, 2026','3','\u0024 4,180','pending','Pending approval']
 ];
-const suppliers=[['SKF','Bearings & seals','96%','4.8','\u0024184K'],['Siemens','Automation & controls','94%','4.7','\u0024312K'],['Parker','Hydraulics & pneumatics','91%','4.6','\u0024228K'],['ABB','Electrical equipment','97%','4.9','\u0024196K'],['Festo','Pneumatic systems','93%','4.7','\u0024142K'],['Gates','Belts & power transmission','89%','4.4','\u002486K']];
+const suppliers=[['SKF','Bearings & seals','96%','4.8','\u0024184K'],['Siemens','Automation & controls','94%','4.7','\u0024312K'],['Parker','Hydraulics & pneumatics','91%','4.6','\u0024228K'],['ABB','Electrical equipment','97%','4.9','\u0024196K'],['Festo','Pneumatic systems','93%','4.7','\u0024142K'],['Gates','Belts & power transmission','89%','4.4','\u002486K'],['Schneider Electric','Power distribution','95%','4.8','\u0024158K'],['Timken','Bearings & powertrain','92%','4.6','\u0024114K'],['SMC','Pneumatic equipment','94%','4.7','\u002498K']];
 const activities=[
  {type:'out',title:'Issued 5 × SKF Deep Groove Bearing',meta:'WO-4832 · Hydraulic Press 02',user:'Mike Torres',time:'18 min ago',qty:'−5'},
  {type:'in',title:'Received 40 × Gates V-Belt A42',meta:'PO-2039 · Dock receipt #984',user:'Sarah Chen',time:'1 hr ago',qty:'+40'},
  {type:'out',title:'Issued 2 × ABB Contactor 24V',meta:'WO-4829 · Conveyor Line 06',user:'David Okafor',time:'3 hrs ago',qty:'−2'},
  {type:'in',title:'Received 12 × Festo Pneumatic Cylinder',meta:'PO-2037 · Dock receipt #981',user:'Sarah Chen',time:'Yesterday',qty:'+12'},
- {type:'out',title:'Issued 1 × Grundfos Circulation Pump',meta:'WO-4822 · Cooling Loop 03',user:'Ana Ruiz',time:'Yesterday',qty:'−1'}
+ {type:'out',title:'Issued 1 × Grundfos Circulation Pump',meta:'WO-4822 · Cooling Loop 03',user:'Ana Ruiz',time:'Yesterday',qty:'−1'},
+ {type:'in',title:'Received 24 x Schneider Circuit Breaker',meta:'PO-2042 - Dock receipt #990',user:'Sarah Chen',time:'2 days ago',qty:'+24'},
+ {type:'out',title:'Issued 3 x Timken Roller Bearing',meta:'WO-4817 - Conveyor Drive 04',user:'Mike Torres',time:'2 days ago',qty:'-3'}
 ];
 function updateDashboardDate(){
  const now=new Date();
@@ -74,7 +80,8 @@ renderAttention();renderParts();renderActivity();renderMaintenance();renderChart
   const categoriesByPartNumber={
     'HSV-PK-240':'Mechanical','SKF-6204-2RS':'Mechanical','SIE-3RG4012':'Electrical',
     'GT-A42-13':'Mechanical','ABB-AF26-30':'Electrical','FES-DSBC-40':'Mechanical',
-    'GRU-UPS25-60':'Mechanical','AB-1769-IQ16':'Electrical'
+    'GRU-UPS25-60':'Mechanical','AB-1769-IQ16':'Electrical',
+    'SCH-GV2ME14':'Electrical','TIM-30206':'Mechanical','SMC-AW30-03':'Mechanical','GEN-WIPE-500':'General'
   };
   parts.forEach(p=>p.category=p.category||categoriesByPartNumber[p.sku]||'General');
 

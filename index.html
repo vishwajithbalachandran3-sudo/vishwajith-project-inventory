@@ -38,7 +38,7 @@
 
     <div class="content">
       <section class="page active" id="dashboard">
-        <div class="page-heading"><div><p class="eyebrow">SATURDAY, JULY 11</p><h1>Good morning, Vish.</h1><p>Here’s what’s happening across your inventory today.</p></div><button class="secondary" id="exportBtn">⇧ Export report</button></div>
+        <div class="page-heading"><div><p class="eyebrow" id="dashboardDate">LOADING DATE</p><h1 id="dashboardGreeting">Good morning, Vish.</h1><p>Here’s what’s happening across your inventory today.</p></div><button class="secondary" id="exportBtn">⇧ Export report</button></div>
 
         <div class="metrics">
           <article class="metric"><div class="metric-top"><span class="metric-icon orange">▦</span><span class="trend up">↗ 4.2%</span></div><p>Total inventory value</p><h2>$1,428,650</h2><small>Across 1,284 unique parts</small></article>
@@ -76,7 +76,7 @@
 
   <div class="modal-backdrop" id="modal"><div class="modal"><button class="modal-close" aria-label="Close">×</button><p class="eyebrow">CREATE ORDER</p><h2>New purchase order</h2><p>Start a replenishment request for a spare part.</p><form id="orderForm"><label>Part<select id="orderPart"></select></label><div class="form-row"><label>Supplier<input id="orderSupplier" readonly></label><label>Quantity<input type="number" min="1" value="25" required></label></div><label>Required by<input type="date" value="2026-07-25" required></label><div class="modal-actions"><button type="button" class="secondary cancel-modal">Cancel</button><button class="primary" type="submit">Create purchase order</button></div></form></div></div>
   <div class="toast" id="toast"><span>✓</span><div><strong>Purchase order created</strong><small>The procurement team has been notified.</small></div></div>
-  <script src="script.js?v=20260711-6"></script>
+  <script src="script.js?v=20260715-17"></script>
   <script src="categories.js?v=20260711-10"></script>
   <script src="orders.js?v=20260711-9"></script>
   <script src="theme.js?v=20260711-14"></script>

@@ -19,6 +19,14 @@ const activities=[
  {type:'in',title:'Received 12 × Festo Pneumatic Cylinder',meta:'PO-2037 · Dock receipt #981',user:'Sarah Chen',time:'Yesterday',qty:'+12'},
  {type:'out',title:'Issued 1 × Grundfos Circulation Pump',meta:'WO-4822 · Cooling Loop 03',user:'Ana Ruiz',time:'Yesterday',qty:'−1'}
 ];
+function updateDashboardDate(){
+ const now=new Date();
+ const date=document.querySelector('#dashboardDate');
+ const greeting=document.querySelector('#dashboardGreeting');
+ if(date)date.textContent=new Intl.DateTimeFormat(undefined,{weekday:'long',month:'long',day:'numeric'}).format(now).toUpperCase();
+ if(greeting){const hour=now.getHours();const period=hour<12?'morning':hour<17?'afternoon':'evening';greeting.textContent=`Good ${period}, Vish.`}
+}
+updateDashboardDate();
 function status(p){return p.stock===0?'critical':p.stock<=p.min?'low':'healthy'}
 function statusText(s){return s==='critical'?'Critical':s==='low'?'Low stock':'Healthy'}
 function partCell(p){return `<div class="part-cell"><span class="part-img">${p.icon}</span><div><strong>${p.name}</strong><small>${p.sku}</small></div></div>`}

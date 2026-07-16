@@ -7,3 +7,18 @@ h1,h2,h3,.brand,.page-heading h1,.metric h2,.card-head h3,.chart-summary strong,
 .po-parts{display:flex;flex-wrap:wrap;gap:4px;min-width:210px;max-width:300px}
 .po-parts span{display:inline-flex;padding:4px 7px;border-radius:5px;background:#edf3ef;color:#285f4a;font-size:9px;font-weight:600;white-space:nowrap}
 body.dark-mode .po-parts span{background:#26372f;color:#a9d4bd}
+body.dark-mode{--cream:#0b1818;--white:#152522;--line:#2b4540;background:radial-gradient(circle at 82% 0%,rgba(42,108,94,.2),transparent 34%),linear-gradient(145deg,#091515 0%,#0c1c1a 52%,#101d21 100%)}
+body.dark-mode .topbar,body.dark-mode .metric,body.dark-mode .card,body.dark-mode .modal{background:#152522;border-color:#2b4540}
+body.dark-mode .sidebar{background:linear-gradient(180deg,#092d25 0%,#071f1c 100%)}
+@media (min-width:1101px) and (min-height:760px){
+  .content{min-height:calc(100vh - 72px)}
+  #dashboard.page.active{min-height:calc(100vh - 136px);display:grid;grid-template-rows:auto auto minmax(280px,1.35fr) minmax(210px,1fr);gap:18px}
+  #dashboard .page-heading,#dashboard .metrics,#dashboard .dashboard-grid,#dashboard .bottom-grid{margin-bottom:0}
+  #dashboard .dashboard-grid,#dashboard .bottom-grid{min-height:0}
+  #dashboard .card{height:100%}
+  #dashboard .stock-card,#dashboard .chart-card,#dashboard .activity-card,#dashboard .schedule-card{display:flex;flex-direction:column}
+  #dashboard .stock-card .table-wrap,#dashboard .chart-card .chart,#recentActivity,#maintenanceList{flex:1}
+  #dashboard .stock-card table{height:100%}
+  #recentActivity,#maintenanceList{display:flex;flex-direction:column}
+  #recentActivity .activity-item,#maintenanceList .maintenance-item{flex:1}
+}

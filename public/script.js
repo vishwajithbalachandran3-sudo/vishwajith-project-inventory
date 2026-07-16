@@ -30,7 +30,7 @@ function updateDashboardDate(){
  const date=document.querySelector('#dashboardDate');
  const greeting=document.querySelector('#dashboardGreeting');
  if(date)date.textContent=new Intl.DateTimeFormat(undefined,{weekday:'long',month:'long',day:'numeric'}).format(now).toUpperCase();
- if(greeting){const hour=now.getHours();const period=hour<12?'morning':hour<17?'afternoon':'evening';greeting.textContent=`Good ${period}, Vish.`}
+ if(greeting){const hour=now.getHours();const period=hour<12?'morning':hour<17?'afternoon':'evening';greeting.textContent=`Good ${period}, Vishwajith.`}
 }
 updateDashboardDate();
 function status(p){return p.stock===0?'critical':p.stock<=p.min?'low':'healthy'}
@@ -67,7 +67,7 @@ renderAttention();renderParts();renderActivity();renderMaintenance();renderChart
   });
   const help=document.querySelector('.help');if(help)help.onclick=()=>showDialog('Vish Project quick guide','<p><strong>Find a part:</strong> use the search bar or Parts inventory page.</p><p><strong>Move stock:</strong> click the ••• button beside a part, then choose Issue or Receive.</p><p><strong>Reorder:</strong> click New purchase order and submit the form.</p>');
   const notify=document.querySelector('.icon-btn');if(notify)notify.onclick=()=>showDialog('Notifications','<p>🔴 8 parts are critically low.</p><p>📦 PO-2048 is expected on July 16.</p><p>⚠ Siemens Proximity Sensor is unavailable for upcoming maintenance.</p>');
-  const profile=document.querySelector('.profile');if(profile)profile.onclick=()=>showDialog('Vish','<p>Warehouse Manager<br>Vish Plant</p><p style="color:#6c756f">Permissions: inventory, procurement, reports</p>');
+  const profile=document.querySelector('.profile');if(profile)profile.onclick=()=>showDialog('Vishwajith','<p>Warehouse Manager<br>Vish Plant</p><p style="color:#6c756f">Permissions: inventory, procurement, reports</p>');
   document.querySelectorAll('#reports .secondary,#activity .secondary').forEach(b=>b.onclick=()=>{document.querySelector('#exportBtn').click();showToast('Report exported','Your CSV file has been downloaded.')});
   const supplierAdd=document.querySelector('#suppliers .page-heading .primary');if(supplierAdd)supplierAdd.onclick=()=>showDialog('Add supplier','<p>This prototype is ready to connect to your ERP supplier master.</p><label>Supplier name<input style="width:100%;height:42px;border:1px solid #dce1dc;border-radius:6px;margin-top:6px;padding:10px" placeholder="Enter company name"></label>');
   document.querySelectorAll('.metric').forEach((m,i)=>{m.style.cursor=i===0?'default':'pointer';if(i>0)m.onclick=()=>navigate(i===1?'inventory':i===2?'orders':'suppliers')});

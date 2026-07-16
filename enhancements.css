@@ -1,0 +1,5 @@
+body,button,input,select,textarea{font-family:'Inter',sans-serif}
+h1,h2,h3,.brand,.metric h2,.chart-summary strong,.date-block strong{font-family:'Space Grotesk',sans-serif}
+.po-parts{display:flex;flex-wrap:wrap;gap:4px;min-width:210px;max-width:300px}
+.po-parts span{display:inline-flex;padding:4px 7px;border-radius:5px;background:#edf3ef;color:#285f4a;font-size:9px;font-weight:600;white-space:nowrap}
+body.dark-mode .po-parts span{background:#26372f;color:#a9d4bd}

@@ -16,6 +16,21 @@
     ['received','Received'],
     ['critical','Cancelled']
   ];
+  const purchasedParts={
+    'PO-2050':['Circuit Breaker','Auxiliary Contact','Overload Relay'],
+    'PO-2049':['Roller Bearing','Shaft Seal'],
+    'PO-2048':['Deep Groove Bearings','Bearing Seals'],
+    'PO-2047':['Solenoid Valves','Hydraulic Hose Kits'],
+    'PO-2046':['Proximity Sensors','PLC I/O Modules','Contactors'],
+    'PO-2045':['V-Belts','Timing Belts','Belt Tensioners']
+  };
+  const headerRow=document.querySelector('#ordersTable').closest('table').querySelector('thead tr');
+  if(!headerRow.querySelector('[data-parts-column]')){
+    const heading=document.createElement('th');
+    heading.textContent='PARTS PURCHASED';
+    heading.dataset.partsColumn='true';
+    headerRow.insertBefore(heading,headerRow.children[4]);
+  }
 
   window.changeOrderStatus=function(index,value){
     const choice=choices.find(item=>item[0]===value);
@@ -39,6 +54,7 @@
       <td>${order[1]}</td>
       <td>${order[2]}</td>
       <td>${order[3]}</td>
+      <td><div class="po-parts">${(purchasedParts[order[0]]||['General parts']).map(part=>`<span>${part}</span>`).join('')}</div></td>
       <td>${order[4]}</td>
       <td><strong>${order[5]}</strong></td>
       <td><select class="order-status-select ${order[6]}" onchange="changeOrderStatus(${index},this.value)">

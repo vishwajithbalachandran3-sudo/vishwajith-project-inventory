@@ -7,9 +7,15 @@ h1,h2,h3,.brand,.page-heading h1,.metric h2,.card-head h3,.chart-summary strong,
 .po-parts{display:flex;flex-wrap:wrap;gap:4px;min-width:210px;max-width:300px}
 .po-parts span{display:inline-flex;padding:4px 7px;border-radius:5px;background:#edf3ef;color:#285f4a;font-size:9px;font-weight:600;white-space:nowrap}
 body.dark-mode .po-parts span{background:#26372f;color:#a9d4bd}
-body.dark-mode{--cream:#0b1020;--white:#151d2f;--line:#2d3a55;background:radial-gradient(circle at 82% 0%,rgba(70,94,170,.22),transparent 35%),linear-gradient(145deg,#080d19 0%,#0d1425 52%,#111827 100%)}
-body.dark-mode .topbar,body.dark-mode .metric,body.dark-mode .card,body.dark-mode .modal{background:#151d2f;border-color:#2d3a55}
-body.dark-mode .sidebar{background:linear-gradient(180deg,#111d36 0%,#0a1122 100%)}
+body.dark-mode{--cream:#17151a;--white:#242129;--line:#403a48;background:radial-gradient(circle at 82% 0%,rgba(143,99,168,.2),transparent 36%),linear-gradient(145deg,#121114 0%,#1b181e 52%,#17191e 100%)}
+body.dark-mode .topbar,body.dark-mode .metric,body.dark-mode .card,body.dark-mode .modal{background:#242129;border-color:#403a48}
+body.dark-mode .sidebar{background:linear-gradient(180deg,#281f30 0%,#17151d 100%)}
+body.dark-mode .search,body.dark-mode .inner-search,body.dark-mode input,body.dark-mode select,body.dark-mode textarea{background:#1b191f!important;border-color:#403a48!important}
+body.dark-mode th{background:#1d1b21;border-color:#393440}
+body.dark-mode td,body.dark-mode .activity-item,body.dark-mode .maintenance-item{border-color:#393440}
+body.dark-mode .secondary,body.dark-mode .theme-toggle{background:#2c2932;border-color:#484250}
+body.dark-mode .chart{background:repeating-linear-gradient(to bottom,transparent 0,transparent 37px,#35303a 38px);border-color:#403a48}
+body.dark-mode .progress-track,body.dark-mode .stock-level div{background:#37333d}
 @media (min-width:1101px) and (min-height:760px){
   .content{min-height:calc(100vh - 72px)}
   #dashboard.page.active{min-height:calc(100vh - 136px);display:grid;grid-template-rows:auto auto minmax(280px,1.35fr) minmax(210px,1fr);gap:18px}

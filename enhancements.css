@@ -7,9 +7,9 @@ h1,h2,h3,.brand,.page-heading h1,.metric h2,.card-head h3,.chart-summary strong,
 .po-parts{display:flex;flex-wrap:wrap;gap:4px;min-width:210px;max-width:300px}
 .po-parts span{display:inline-flex;padding:4px 7px;border-radius:5px;background:#edf3ef;color:#285f4a;font-size:9px;font-weight:600;white-space:nowrap}
 body.dark-mode .po-parts span{background:#26372f;color:#a9d4bd}
-body.dark-mode{--cream:#0b1818;--white:#152522;--line:#2b4540;background:radial-gradient(circle at 82% 0%,rgba(42,108,94,.2),transparent 34%),linear-gradient(145deg,#091515 0%,#0c1c1a 52%,#101d21 100%)}
-body.dark-mode .topbar,body.dark-mode .metric,body.dark-mode .card,body.dark-mode .modal{background:#152522;border-color:#2b4540}
-body.dark-mode .sidebar{background:linear-gradient(180deg,#092d25 0%,#071f1c 100%)}
+body.dark-mode{--cream:#0b1020;--white:#151d2f;--line:#2d3a55;background:radial-gradient(circle at 82% 0%,rgba(70,94,170,.22),transparent 35%),linear-gradient(145deg,#080d19 0%,#0d1425 52%,#111827 100%)}
+body.dark-mode .topbar,body.dark-mode .metric,body.dark-mode .card,body.dark-mode .modal{background:#151d2f;border-color:#2d3a55}
+body.dark-mode .sidebar{background:linear-gradient(180deg,#111d36 0%,#0a1122 100%)}
 @media (min-width:1101px) and (min-height:760px){
   .content{min-height:calc(100vh - 72px)}
   #dashboard.page.active{min-height:calc(100vh - 136px);display:grid;grid-template-rows:auto auto minmax(280px,1.35fr) minmax(210px,1fr);gap:18px}

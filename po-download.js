@@ -29,7 +29,7 @@
     downloadModal=document.createElement('div');
     downloadModal.id='poDownloadModal';
     downloadModal.className='modal-backdrop';
-    downloadModal.innerHTML='<div class="modal"><button type="button" class="modal-close po-download-close" aria-label="Close">&times;</button><p class="eyebrow">PURCHASE ORDER READY</p><h2></h2><div class="dialog-body"></div><div class="modal-actions"><button type="button" class="secondary po-download-close">Done</button><button type="button" class="primary" id="downloadPoBtn">Download PO</button></div></div>';
+    downloadModal.innerHTML='<div class="modal"><button type="button" class="modal-close po-download-close" aria-label="Close">&times;</button><p class="eyebrow">PURCHASE ORDER DOWNLOADED</p><h2></h2><div class="dialog-body"></div><div class="modal-actions"><button type="button" class="secondary po-download-close">Done</button><button type="button" class="primary" id="downloadPoBtn">Download again</button></div></div>';
     document.body.appendChild(downloadModal);
     downloadModal.addEventListener('click',event=>{if(event.target===downloadModal||event.target.closest('.po-download-close'))downloadModal.classList.remove('open')});
   }
@@ -59,6 +59,7 @@
     downloadModal.querySelector('.dialog-body').innerHTML=`<p><strong>${escapeHtml(po.product)}</strong> - ${po.quantity} units</p><p>Supplier: ${escapeHtml(po.supplier)}</p><p>Order total: <strong>${money(po.total)}</strong></p><p style="color:#7d867f">Download the supplier-ready document, then attach it to your email.</p>`;
     downloadModal.querySelector('#downloadPoBtn').onclick=()=>download(po);
     downloadModal.classList.add('open');
+    download(po);
     form.reset();quantityInput.value='25';requiredInput.value=isoDate(suggested);syncSupplier();
   };
 })();

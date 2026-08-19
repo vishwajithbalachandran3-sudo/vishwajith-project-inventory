@@ -16,7 +16,7 @@ const parts=[
 // and return to the original sample quantities after a page refresh.
 try{localStorage.removeItem('vish-project-stock-levels')}catch(e){}
 const orders=[
- ['PO-2050','Schneider Electric','Jul 14, 2026','Jul 22, 2026','3','\u0024 6,740','pending','Pending approval'],['PO-2049','Timken','Jul 12, 2026','Jul 20, 2026','2','\u0024 3,860','transit','In transit'],['PO-2048','SKF','Jul 08, 2026','Jul 16, 2026','4','\u0024 12,840','transit','In transit'],['PO-2047','Parker Hannifin','Jul 07, 2026','Jul 19, 2026','2','\u0024 8,260','pending','Pending approval'],['PO-2046','Siemens','Jul 03, 2026','Jul 14, 2026','7','\u0024 31,440','transit','In transit'],['PO-2045','Gates Industrial','Jul 01, 2026','Jul 12, 2026','3','\u0024 4,180','pending','Pending approval']
+ ['PO-2050','Schneider Electric','Jul 14, 2026','Jul 22, 2026','3','\u0024 6,740','pending','Pending approval'],['PO-2049','ABB','Jul 12, 2026','Jul 20, 2026','2','\u0024 3,860','transit','In transit'],['PO-2048','Festo','Jul 08, 2026','Jul 16, 2026','4','\u0024 12,840','transit','In transit'],['PO-2047','Gates Industrial','Jul 07, 2026','Jul 19, 2026','2','\u0024 8,260','pending','Pending approval'],['PO-2046','Grundfos','Jul 03, 2026','Jul 14, 2026','7','\u0024 31,440','transit','In transit'],['PO-2045','SMC','Jul 01, 2026','Jul 12, 2026','3','\u0024 4,180','pending','Pending approval']
 ];
 const formatOrderDate=offset=>{const date=new Date();date.setHours(12,0,0,0);date.setDate(date.getDate()+offset);return date.toLocaleDateString('en-US',{month:'short',day:'2-digit',year:'numeric'})};
 [[-2,5],[-4,3],[-7,4],[-8,7],[-12,2],[-14,1]].forEach(([created,expected],index)=>{if(orders[index]){orders[index][2]=formatOrderDate(created);orders[index][3]=formatOrderDate(expected)}});

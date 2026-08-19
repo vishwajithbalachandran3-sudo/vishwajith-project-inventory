@@ -19,11 +19,11 @@
   ];
   const purchasedParts={
     'PO-2050':['Circuit Breaker','Auxiliary Contact','Overload Relay'],
-    'PO-2049':['Roller Bearing','Shaft Seal'],
-    'PO-2048':['Deep Groove Bearings','Bearing Seals'],
-    'PO-2047':['Solenoid Valves','Hydraulic Hose Kits'],
-    'PO-2046':['Proximity Sensors','PLC I/O Modules','Contactors'],
-    'PO-2045':['V-Belts','Timing Belts','Belt Tensioners']
+    'PO-2049':['ABB Contactors','Auxiliary Relays'],
+    'PO-2048':['Pneumatic Cylinders','Cylinder Seal Kits'],
+    'PO-2047':['V-Belts','Timing Belts'],
+    'PO-2046':['Circulation Pumps','Pump Flange Kits'],
+    'PO-2045':['Air Filter Regulators','Pressure Gauges']
   };
   const headerRow=document.querySelector('#ordersTable').closest('table').querySelector('thead tr');
   if(!headerRow.querySelector('[data-parts-column]')){
@@ -51,7 +51,7 @@
 
   renderOrders=function(){
     document.querySelector('#ordersTable').innerHTML=orders.map((order,index)=>`<tr>
-      <td><strong>${order[0]}</strong></td>
+      <td><strong>${order[0]}</strong>${String(order[0]).startsWith('AUTO-')?'<span class="auto-po-badge">AUTOMATED</span>':''}</td>
       <td>${order[1]}</td>
       <td>${order[2]}</td>
       <td>${order[3]}</td>

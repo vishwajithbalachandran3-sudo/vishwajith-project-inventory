@@ -2,11 +2,11 @@
   const storageKey='vish-project-created-purchase-orders';
   const defaultProducts={
     'PO-2050':'Circuit Breaker, Auxiliary Contact, Overload Relay',
-    'PO-2049':'Roller Bearing, Shaft Seal',
-    'PO-2048':'Deep Groove Bearings, Bearing Seals',
-    'PO-2047':'Solenoid Valves, Hydraulic Hose Kits',
-    'PO-2046':'Proximity Sensors, PLC I/O Modules, Contactors',
-    'PO-2045':'V-Belts, Timing Belts, Belt Tensioners'
+    'PO-2049':'ABB Contactors, Auxiliary Relays',
+    'PO-2048':'Pneumatic Cylinders, Cylinder Seal Kits',
+    'PO-2047':'V-Belts, Timing Belts',
+    'PO-2046':'Circulation Pumps, Pump Flange Kits',
+    'PO-2045':'Air Filter Regulators, Pressure Gauges'
   };
 
   function readRecords(){
@@ -102,19 +102,30 @@
     if(waitingCount)waitingCount.textContent=waiting;
   }
 
-  const button=document.querySelector('#automateReorderBtn');
-  if(button)button.addEventListener('click',()=>{
+  function clearAutomaticOrders(){
     const previousRecords=readRecords();
     const automaticNumbers=new Set(previousRecords.filter(record=>record.automatic).map(record=>record.poNumber));
-    const records=previousRecords.filter(record=>!record.automatic);
+    const manualRecords=previousRecords.filter(record=>!record.automatic);
     for(let index=orders.length-1;index>=0;index--){
       if(automaticNumbers.has(orders[index][0])||String(orders[index][0]).startsWith('AUTO-'))orders.splice(index,1);
     }
     try{
       const statuses=JSON.parse(localStorage.getItem('vish-project-order-statuses')||'{}');
-      automaticNumbers.forEach(number=>delete statuses[number]);
+      Object.keys(statuses).forEach(number=>{if(automaticNumbers.has(number)||number.startsWith('AUTO-'))delete statuses[number]});
       localStorage.setItem('vish-project-order-statuses',JSON.stringify(statuses));
     }catch(e){}
+    writeRecords(manualRecords);
+    return manualRecords;
+  }
+
+  // Each refresh starts with the normal manual-PO baseline. Clicking Automate POs
+  // then makes the automatically generated shortage orders easy to demonstrate.
+  clearAutomaticOrders();
+  renderOrders();
+
+  const button=document.querySelector('#automateReorderBtn');
+  if(button)button.addEventListener('click',()=>{
+    const records=clearAutomaticOrders();
     const lowStock=parts.filter(part=>part.stock<part.min);
     const now=new Date();now.setHours(12,0,0,0);
     const required=new Date(now);required.setDate(required.getDate()+7);

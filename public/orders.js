@@ -54,7 +54,7 @@
       <td>${order[1]}</td>
       <td>${order[2]}</td>
       <td>${order[3]}</td>
-      <td><div class="po-parts">${(purchasedParts[order[0]]||['General parts']).map(part=>`<span>${part}</span>`).join('')}</div></td>
+      <td><div class="po-parts">${(purchasedParts[order[0]]||(order[8]?[order[8]]:['General products'])).map(part=>`<span>${part}</span>`).join('')}</div></td>
       <td>${order[4]}</td>
       <td><strong>${order[5]}</strong></td>
       <td><select class="order-status-select ${order[6]}" onchange="changeOrderStatus(${index},this.value)">

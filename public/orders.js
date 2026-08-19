@@ -11,6 +11,7 @@
   }catch(e){}
 
   const choices=[
+    ['waiting','Waiting for approval'],
     ['pending','Pending approval'],
     ['transit','In transit'],
     ['received','Received'],
@@ -57,9 +58,9 @@
       <td><div class="po-parts">${(purchasedParts[order[0]]||(order[8]?[order[8]]:['General products'])).map(part=>`<span>${part}</span>`).join('')}</div></td>
       <td>${order[4]}</td>
       <td><strong>${order[5]}</strong></td>
-      <td><select class="order-status-select ${order[6]}" onchange="changeOrderStatus(${index},this.value)">
+      <td><div class="order-status-actions"><select class="order-status-select ${order[6]}" onchange="changeOrderStatus(${index},this.value)">
         ${choices.map(choice=>`<option value="${choice[0]}" ${order[6]===choice[0]?'selected':''}>${choice[1]}</option>`).join('')}
-      </select></td>
+      </select><button type="button" class="po-pdf-btn" onclick="downloadPurchaseOrderPdf(${index})">Download PDF</button></div></td>
     </tr>`).join('');
   };
   renderOrders();

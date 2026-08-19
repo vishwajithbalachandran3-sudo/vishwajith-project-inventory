@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=20260711-16" />
-  <link rel="stylesheet" href="enhancements.css?v=20260715-23" />
+  <link rel="stylesheet" href="enhancements.css?v=20260818-39" />
 </head>
 <body class="dark-mode">
   <aside class="sidebar">
@@ -62,7 +62,7 @@
 
         <div class="dashboard-grid">
           <article class="card stock-card">
-            <div class="card-head"><div><h3>Stock requiring attention</h3><p>Parts at or below their reorder point</p></div><button class="text-btn" data-goto="inventory">View all 24 →</button></div>
+            <div class="card-head"><div><h3>Stock requiring attention</h3><p>Parts at or below their reorder point</p></div><div class="card-head-actions"><button class="secondary automate-btn" id="automateReorderBtn" type="button">⚡ Automate</button><button class="text-btn" data-goto="inventory">View all 24 →</button></div></div>
             <div class="table-wrap"><table><thead><tr><th>PART</th><th>STOCK LEVEL</th><th>STATUS</th><th></th></tr></thead><tbody id="attentionTable"></tbody></table></div>
           </article>
           <article class="card chart-card">
@@ -94,8 +94,9 @@
   <script src="supplier-editor.js?v=20260818-35"></script>
   <script src="maintenance.js?v=20260818-36"></script>
   <script src="categories.js?v=20260818-34"></script>
-  <script src="orders.js?v=20260818-37"></script>
-  <script src="po-download.js?v=20260818-38"></script>
+  <script src="orders.js?v=20260818-39"></script>
+  <script src="po-download.js?v=20260818-39"></script>
+  <script src="automation.js?v=20260818-39"></script>
   <script src="theme.js?v=20260711-14"></script>
 </body>
 </html>

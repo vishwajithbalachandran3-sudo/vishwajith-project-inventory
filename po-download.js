@@ -19,7 +19,7 @@
   try{savedStatuses=JSON.parse(localStorage.getItem('vish-project-order-statuses')||'{}')}catch(e){}
   createdOrders.forEach(record=>{
     if(orders.some(order=>order[0]===record.poNumber))return;
-    const status=savedStatuses[record.poNumber]||{value:'pending',label:'Pending approval'};
+    const status=savedStatuses[record.poNumber]||(record.automatic?{value:'waiting',label:'Waiting for approval'}:{value:'pending',label:'Pending approval'});
     orders.unshift([record.poNumber,record.supplier,record.created,record.requiredBy,'1',money(record.total),status.value,status.label,record.product]);
   });
   if(createdOrders.length&&typeof renderOrders==='function')renderOrders();
@@ -39,6 +39,10 @@
   }
 
   function download(po){
+    if(typeof window.downloadPurchaseOrderPdfRecord==='function'){
+      window.downloadPurchaseOrderPdfRecord(po);
+      return;
+    }
     const blob=new Blob([documentHtml(po)],{type:'text/html;charset=utf-8'});
     const url=URL.createObjectURL(blob);
     const link=document.createElement('a');link.href=url;link.download=`${po.poNumber}-purchase-order.html`;document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);

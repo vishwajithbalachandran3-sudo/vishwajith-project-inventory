@@ -12,7 +12,9 @@ const parts=[
  {name:'SMC Air Filter Regulator',sku:'SMC-AW30-03',supplier:'SMC',location:'Rack B - Shelf 6',stock:14,min:5,price:128.60,icon:'AF'},
  {name:'Industrial Cleaning Wipes',sku:'GEN-WIPE-500',supplier:'Grainger',location:'General Store - G12',stock:85,min:25,price:19.80,icon:'GW'}
 ];
-try{const savedStock=JSON.parse(localStorage.getItem('vish-project-stock-levels')||'{}');parts.forEach(p=>{if(Number.isFinite(savedStock[p.sku]))p.stock=savedStock[p.sku]})}catch(e){}
+// Keep this portfolio demo repeatable: stock movements last for the current session
+// and return to the original sample quantities after a page refresh.
+try{localStorage.removeItem('vish-project-stock-levels')}catch(e){}
 const orders=[
  ['PO-2050','Schneider Electric','Jul 14, 2026','Jul 22, 2026','3','\u0024 6,740','pending','Pending approval'],['PO-2049','Timken','Jul 12, 2026','Jul 20, 2026','2','\u0024 3,860','transit','In transit'],['PO-2048','SKF','Jul 08, 2026','Jul 16, 2026','4','\u0024 12,840','transit','In transit'],['PO-2047','Parker Hannifin','Jul 07, 2026','Jul 19, 2026','2','\u0024 8,260','pending','Pending approval'],['PO-2046','Siemens','Jul 03, 2026','Jul 14, 2026','7','\u0024 31,440','transit','In transit'],['PO-2045','Gates Industrial','Jul 01, 2026','Jul 12, 2026','3','\u0024 4,180','pending','Pending approval']
 ];
@@ -37,7 +39,7 @@ function updateDashboardDate(){
 }
 updateDashboardDate();
 function status(p){return p.stock===0?'critical':p.stock<p.min?'low':'healthy'}
-function persistStockLevels(){try{localStorage.setItem('vish-project-stock-levels',JSON.stringify(Object.fromEntries(parts.map(p=>[p.sku,p.stock]))))}catch(e){}}
+function persistStockLevels(){}
 function statusText(s){return s==='critical'?'Critical':s==='low'?'Low stock':'Healthy'}
 function partCell(p){return `<div class="part-cell"><span class="part-img">${p.icon}</span><div><strong>${p.name}</strong><small>${p.sku}</small></div></div>`}
 function renderAttention(){document.querySelector('#attentionTable').innerHTML=parts.filter(p=>status(p)!=='healthy').slice(0,4).map(p=>{let s=status(p),pct=Math.min(100,p.stock/p.min*60);return `<tr><td>${partCell(p)}</td><td><div class="stock-level"><strong>${p.stock} / ${p.min} min</strong><div><i style="width:${pct}%;background:${s==='critical'?'#d85650':'#e0a03a'}"></i></div></div></td><td><span class="status ${s}">${statusText(s)}</span></td><td><button class="row-menu">•••</button></td></tr>`}).join('')}

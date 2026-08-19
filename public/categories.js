@@ -2,17 +2,19 @@
   const categoryFilter=document.querySelector('#categoryFilter');
   const statusFilter=document.querySelector('#statusFilter');
   if(!categoryFilter||!statusFilter)return;
-  const categoryClass=c=>c==='Mechanical'?'transit':c==='Electrical'?'pending':'healthy';
+  const categoryClass=c=>c==='Electrical'?'pending':c==='Packaging'?'received':c==='General'?'healthy':'transit';
 
   categoryFilter.style.display='none';
   const tabs=document.createElement('div');
   tabs.className='category-tabs';
   tabs.setAttribute('role','tablist');
   tabs.innerHTML=`
-    <button class="category-tab active" data-category="all" role="tab">All Parts <span>${parts.length}</span></button>
+    <button class="category-tab active" data-category="all" role="tab">All Products <span>${parts.length}</span></button>
     <button class="category-tab" data-category="Mechanical" role="tab">Mechanical <span>${parts.filter(p=>p.category==='Mechanical').length}</span></button>
     <button class="category-tab" data-category="Electrical" role="tab">Electrical <span>${parts.filter(p=>p.category==='Electrical').length}</span></button>
-    <button class="category-tab" data-category="General" role="tab">General <span>${parts.filter(p=>p.category==='General').length}</span></button>`;
+    <button class="category-tab" data-category="General" role="tab">General <span>${parts.filter(p=>p.category==='General').length}</span></button>
+    <button class="category-tab" data-category="Raw Materials" role="tab">Raw Materials <span>${parts.filter(p=>p.category==='Raw Materials').length}</span></button>
+    <button class="category-tab" data-category="Packaging" role="tab">Packaging <span>${parts.filter(p=>p.category==='Packaging').length}</span></button>`;
   document.querySelector('#inventory .toolbar').insertAdjacentElement('afterend',tabs);
 
   renderParts=function(query='',filter='all'){
@@ -34,7 +36,7 @@
   const addForm=document.querySelector('#addPartForm');
   if(addForm&&!addForm.elements.category){
     const label=document.createElement('label');
-    label.innerHTML='Category<select name="category"><option>Mechanical</option><option>Electrical</option><option>General</option></select>';
+    label.innerHTML='Category<select name="category"><option>Mechanical</option><option>Electrical</option><option>General</option><option>Raw Materials</option><option>Packaging</option></select>';
     addForm.querySelector('.modal-actions').insertAdjacentElement('beforebegin',label);
     addForm.addEventListener('submit',()=>{
       const chosen=addForm.elements.category.value;

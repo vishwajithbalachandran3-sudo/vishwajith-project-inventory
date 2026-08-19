@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=20260711-16" />
-  <link rel="stylesheet" href="enhancements.css?v=20260819-42" />
+  <link rel="stylesheet" href="enhancements.css?v=20260819-43" />
 </head>
 <body class="dark-mode">
   <aside class="sidebar">
@@ -51,7 +51,7 @@
 
     <div class="content">
       <section class="page active" id="dashboard">
-        <div class="page-heading"><div><p class="eyebrow" id="dashboardDate">LOADING DATE</p><h1 id="dashboardGreeting">Good morning, Vishwajith.</h1><p>Here’s what’s happening across your inventory today.</p></div><button class="secondary" id="exportBtn">⇧ Export report</button></div>
+        <div class="page-heading"><div><p class="eyebrow" id="dashboardDate">LOADING DATE</p><h1 id="dashboardGreeting">Good morning, Vishwajith.</h1><p>Here’s what’s happening across your inventory today.</p></div><div class="page-heading-actions"><button class="primary automate-btn" id="automateReorderBtn" type="button">⚡ Automate POs</button><button class="secondary" id="exportBtn">⇧ Export report</button></div></div>
 
         <div class="metrics">
           <article class="metric"><div class="metric-top"><span class="metric-icon orange">▦</span><span class="trend up">↗ 4.2%</span></div><p>Total inventory value</p><h2>$1,428,650</h2><small>Across 1,284 unique parts</small></article>
@@ -62,7 +62,7 @@
 
         <div class="dashboard-grid">
           <article class="card stock-card">
-            <div class="card-head"><div><h3>Stock requiring attention</h3><p>Parts at or below their reorder point</p></div><div class="card-head-actions"><button class="secondary automate-btn" id="automateReorderBtn" type="button">⚡ Automate POs</button><button class="text-btn" data-goto="inventory">View all 24 →</button></div></div>
+            <div class="card-head"><div><h3>Stock requiring attention</h3><p>Parts at or below their reorder point</p></div><button class="text-btn" data-goto="inventory">View all 24 →</button></div>
             <div class="table-wrap"><table><thead><tr><th>PART</th><th>STOCK LEVEL</th><th>STATUS</th><th></th></tr></thead><tbody id="attentionTable"></tbody></table></div>
           </article>
           <article class="card chart-card">

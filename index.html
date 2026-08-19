@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Professional spare-parts inventory and maintenance operations dashboard." />
-  <title>MRO Inventory | Operations Dashboard</title>
+  <meta name="description" content="Inventory automation dashboard for products, suppliers, procurement, and production planning." />
+  <title>Inventory Automation | Operations Dashboard</title>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-L4V1Q5W35X"></script>
   <script>
@@ -75,7 +75,7 @@
 
         <div class="bottom-grid">
           <article class="card activity-card"><div class="card-head"><div><h3>Recent activity</h3><p>Latest inventory transactions</p></div><button class="text-btn" data-goto="activity">View activity log →</button></div><div id="recentActivity"></div></article>
-          <article class="card schedule-card"><div class="card-head"><div><h3>Upcoming maintenance</h3><p>Parts readiness for scheduled work</p></div><div style="display:flex;align-items:center;gap:10px"><span class="month" id="maintenanceMonth">UPCOMING</span><button class="secondary" id="scheduleMaintenanceBtn" type="button">＋ Schedule</button></div></div><div id="maintenanceList"></div></article>
+          <article class="card schedule-card"><div class="card-head"><div><h3>Production scheduler</h3><p>Material readiness for upcoming production</p></div><div style="display:flex;align-items:center;gap:10px"><span class="month" id="maintenanceMonth">UPCOMING</span><button class="secondary" id="scheduleMaintenanceBtn" type="button">＋ Schedule</button></div></div><div id="maintenanceList"></div></article>
         </div>
       </section>
 
@@ -89,10 +89,10 @@
 
   <div class="modal-backdrop" id="modal"><div class="modal"><button class="modal-close" aria-label="Close">×</button><p class="eyebrow">CREATE ORDER</p><h2>New purchase order</h2><p>Start a replenishment request for a spare part.</p><form id="orderForm"><label>Part<select id="orderPart"></select></label><div class="form-row"><label>Supplier<input id="orderSupplier" readonly></label><label>Quantity<input type="number" min="1" value="25" required></label></div><label>Required by<input type="date" value="2026-07-25" required></label><div class="modal-actions"><button type="button" class="secondary cancel-modal">Cancel</button><button class="primary" type="submit">Create purchase order</button></div></form></div></div>
   <div class="toast" id="toast"><span>✓</span><div><strong>Purchase order created</strong><small>The procurement team has been notified.</small></div></div>
-  <script src="script.js?v=20260817-33"></script>
+  <script src="script.js?v=20260818-36"></script>
   <script src="materials.js?v=20260818-34"></script>
   <script src="supplier-editor.js?v=20260818-35"></script>
-  <script src="maintenance.js?v=20260817-32"></script>
+  <script src="maintenance.js?v=20260818-36"></script>
   <script src="categories.js?v=20260818-34"></script>
   <script src="orders.js?v=20260715-19"></script>
   <script src="theme.js?v=20260711-14"></script>

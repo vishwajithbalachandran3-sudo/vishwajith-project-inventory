@@ -104,18 +104,22 @@
 
   const button=document.querySelector('#automateReorderBtn');
   if(button)button.addEventListener('click',()=>{
-    const records=readRecords();
+    const previousRecords=readRecords();
+    const automaticNumbers=new Set(previousRecords.filter(record=>record.automatic).map(record=>record.poNumber));
+    const records=previousRecords.filter(record=>!record.automatic);
+    for(let index=orders.length-1;index>=0;index--){
+      if(automaticNumbers.has(orders[index][0])||String(orders[index][0]).startsWith('AUTO-'))orders.splice(index,1);
+    }
+    try{
+      const statuses=JSON.parse(localStorage.getItem('vish-project-order-statuses')||'{}');
+      automaticNumbers.forEach(number=>delete statuses[number]);
+      localStorage.setItem('vish-project-order-statuses',JSON.stringify(statuses));
+    }catch(e){}
     const lowStock=parts.filter(part=>part.stock<part.min);
     const now=new Date();now.setHours(12,0,0,0);
     const required=new Date(now);required.setDate(required.getDate()+7);
     let created=0;
     lowStock.forEach((part,index)=>{
-      const hasOpenAutoOrder=records.some(record=>{
-        if(!record.automatic||record.sku!==part.sku)return false;
-        const order=orders.find(item=>item[0]===record.poNumber);
-        return order&&!['received','critical'].includes(order[6]);
-      });
-      if(hasOpenAutoOrder)return;
       const quantity=Math.max(1,part.min-part.stock);
       const poNumber=`AUTO-${String(now.getFullYear()).slice(-2)}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}-${String(Date.now()+index).slice(-4)}`;
       const po={poNumber,product:part.name,sku:part.sku,supplier:part.supplier,quantity,unitPrice:part.price,total:quantity*part.price,created:displayDate(now),requiredBy:displayDate(required),automatic:true};
@@ -123,8 +127,8 @@
       orders.unshift([po.poNumber,po.supplier,po.created,po.requiredBy,'1',formatMoney(po.total),'pending','Pending approval',po.product]);
       created++;
     });
-    if(created){writeRecords(records);renderOrders();updateOrderMetrics()}
-    if(typeof showToast==='function')showToast(created?'Automatic POs created':'Automatic POs already exist',created?`${created} low-stock purchase order${created===1?' is':'s are'} pending approval.`:'The low-stock products already have purchase orders pending approval.');
+    writeRecords(records);renderOrders();updateOrderMetrics();
+    if(typeof showToast==='function')showToast(created?'Automatic POs created':'No low-stock products',created?`${created} low-stock purchase order${created===1?' is':'s are'} pending approval.`:'All products are currently at or above their reorder points.');
     if(typeof navigate==='function')navigate('orders');
   });
 

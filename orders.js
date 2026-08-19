@@ -4,14 +4,14 @@
     const saved=JSON.parse(localStorage.getItem(savedKey)||'{}');
     orders.forEach(order=>{
       if(saved[order[0]]){
-        order[6]=saved[order[0]].value;
-        order[7]=saved[order[0]].label;
+        const stored=saved[order[0]];
+        order[6]=stored.value==='waiting'?'pending':stored.value;
+        order[7]=stored.value==='waiting'?'Pending approval':stored.label;
       }
     });
   }catch(e){}
 
   const choices=[
-    ['waiting','Waiting for approval'],
     ['pending','Pending approval'],
     ['transit','In transit'],
     ['received','Received'],

@@ -95,7 +95,7 @@
 
   function updateOrderMetrics(){
     const open=orders.filter(order=>!['received','critical'].includes(order[6])).length;
-    const waiting=orders.filter(order=>['waiting','pending'].includes(order[6])).length;
+    const waiting=orders.filter(order=>order[6]==='pending').length;
     const dashboardCount=document.querySelector('#dashboard .metrics .metric:nth-child(3) h2');
     const waitingCount=document.querySelector('#orders .metrics .metric:first-child h2');
     if(dashboardCount)dashboardCount.textContent=open;
@@ -120,11 +120,12 @@
       const poNumber=`AUTO-${String(now.getFullYear()).slice(-2)}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}-${String(Date.now()+index).slice(-4)}`;
       const po={poNumber,product:part.name,sku:part.sku,supplier:part.supplier,quantity,unitPrice:part.price,total:quantity*part.price,created:displayDate(now),requiredBy:displayDate(required),automatic:true};
       records.unshift(po);
-      orders.unshift([po.poNumber,po.supplier,po.created,po.requiredBy,'1',formatMoney(po.total),'waiting','Waiting for approval',po.product]);
+      orders.unshift([po.poNumber,po.supplier,po.created,po.requiredBy,'1',formatMoney(po.total),'pending','Pending approval',po.product]);
       created++;
     });
     if(created){writeRecords(records);renderOrders();updateOrderMetrics()}
-    if(typeof showToast==='function')showToast(created?'Automatic POs created':'No new POs needed',created?`${created} low-stock purchase order${created===1?' is':'s are'} waiting for approval.`:'Every low-stock product already has an open automatic purchase order.');
+    if(typeof showToast==='function')showToast(created?'Automatic POs created':'Automatic POs already exist',created?`${created} low-stock purchase order${created===1?' is':'s are'} pending approval.`:'The low-stock products already have purchase orders pending approval.');
+    if(typeof navigate==='function')navigate('orders');
   });
 
   updateOrderMetrics();

@@ -19,7 +19,8 @@
   try{savedStatuses=JSON.parse(localStorage.getItem('vish-project-order-statuses')||'{}')}catch(e){}
   createdOrders.forEach(record=>{
     if(orders.some(order=>order[0]===record.poNumber))return;
-    const status=savedStatuses[record.poNumber]||(record.automatic?{value:'waiting',label:'Waiting for approval'}:{value:'pending',label:'Pending approval'});
+    const storedStatus=savedStatuses[record.poNumber];
+    const status=storedStatus&&storedStatus.value!=='waiting'?storedStatus:{value:'pending',label:'Pending approval'};
     orders.unshift([record.poNumber,record.supplier,record.created,record.requiredBy,'1',money(record.total),status.value,status.label,record.product]);
   });
   if(createdOrders.length&&typeof renderOrders==='function')renderOrders();
